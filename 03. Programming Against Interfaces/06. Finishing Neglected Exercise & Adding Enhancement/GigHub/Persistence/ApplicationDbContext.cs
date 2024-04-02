@@ -32,21 +32,7 @@ namespace GigHub.Persistence
             modelBuilder.Configurations.Add(new UserNotificationConfiguration());
             modelBuilder.Configurations.Add(new GenreConfiguration());
             modelBuilder.Configurations.Add(new NotificationConfiguration());
-
-            modelBuilder.Entity<ApplicationUser>()
-                .HasMany(u => u.Followers)
-                .WithRequired(f => f.Followee)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<ApplicationUser>()
-                .HasMany(u => u.Followees)
-                .WithRequired(f => f.Follower)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<UserNotification>()
-                .HasRequired(un => un.User)
-                .WithMany(u => u.UserNotifications)
-                .WillCascadeOnDelete(false);
+            modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

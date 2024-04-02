@@ -7,8 +7,7 @@ namespace GigHub.Persistence.EntityConfigurations
     {
         public NotificationConfiguration()
         {
-            Property(n => n.GigId)
-                .IsRequired();
+
         }
     }
 }
