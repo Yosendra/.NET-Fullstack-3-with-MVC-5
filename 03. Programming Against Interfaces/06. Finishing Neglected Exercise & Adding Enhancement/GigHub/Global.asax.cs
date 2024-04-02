@@ -15,7 +15,9 @@ using AutoMapper;
  * Look at:
  * • ApplicationDbContext.cs -> OnModelCreating() (register domain class configuration)
  * • Attendance.cs                                (delete annotation)
+ * • Following.cs                                 (delete annotation)
  * • AttendanceConfiguration.cs
+ * • FollowingConfiguration.cs
 */
 
 namespace GigHub
