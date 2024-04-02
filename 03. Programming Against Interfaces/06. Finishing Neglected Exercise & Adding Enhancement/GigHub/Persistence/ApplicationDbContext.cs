@@ -30,6 +30,7 @@ namespace GigHub.Persistence
             modelBuilder.Configurations.Add(new AttendanceConfiguration());
             modelBuilder.Configurations.Add(new FollowingConfiguration());
             modelBuilder.Configurations.Add(new UserNotificationConfiguration());
+            modelBuilder.Configurations.Add(new GenreConfiguration());
 
             modelBuilder.Entity<ApplicationUser>()
                 .HasMany(u => u.Followers)

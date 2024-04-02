@@ -233,6 +233,7 @@
     </Compile>
     <Compile Include="Persistence\EntityConfigurations\AttendanceConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\FollowingConfiguration.cs" />
+    <Compile Include="Persistence\EntityConfigurations\GenreConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\GigConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\UserNotificationConfiguration.cs" />
     <Compile Include="Persistence\Migrations\202403231231123_InitialModel.cs" />

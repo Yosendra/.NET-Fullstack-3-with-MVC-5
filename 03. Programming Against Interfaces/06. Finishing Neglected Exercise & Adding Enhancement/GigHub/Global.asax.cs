@@ -17,9 +17,11 @@ using AutoMapper;
  * • Attendance.cs                                (delete annotation)
  * • Following.cs                                 (delete annotation)
  * • UserNotification.cs                          (delete annotation)
+ * • Genre.cs                                     (delete annotation)
  * • AttendanceConfiguration.cs
  * • FollowingConfiguration.cs
  * • UserNotificationConfiguration.cs
+ * • GenreConfiguration.cs
 */
 
 namespace GigHub
