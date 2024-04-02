@@ -27,6 +27,7 @@ namespace GigHub.Persistence
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new GigConfiguration());
+            modelBuilder.Configurations.Add(new AttendanceConfiguration());
 
             modelBuilder.Entity<ApplicationUser>()
                 .HasMany(u => u.Followers)
