@@ -131,8 +131,10 @@ namespace GigHub.Controllers
             }
 
             var gig = _unitOfWork.Gigs.GetGigWithAttendees(viewModel.Id);
+            
             if (gig == null)
                 return HttpNotFound();
+            
             if (gig.ArtistId != User.Identity.GetUserId())
                 return new HttpUnauthorizedResult();
 
