@@ -81,13 +81,10 @@ namespace GigHub.Controllers
                 return View("GigForm", viewModel);
             }
 
-            var gig = new Gig
-            {
-                ArtistId = User.Identity.GetUserId(),
-                DateTime = viewModel.GetDateTime(),
-                GenreId = viewModel.Genre,
-                Venue = viewModel.Venue,
-            };
+            var gig = new Gig(User.Identity.GetUserId(), 
+                viewModel.Genre,
+                viewModel.GetDateTime(),
+                viewModel.Venue);
             
             _unitOfWork.Gigs.Add(gig);
             _unitOfWork.Complete();

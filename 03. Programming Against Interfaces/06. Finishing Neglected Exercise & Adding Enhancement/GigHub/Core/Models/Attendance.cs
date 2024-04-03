@@ -4,8 +4,8 @@
     {
         public int GigId { get; private set; }
         public string AttendeeId { get; private set; }
-        public Gig Gig { get; set; }
-        public ApplicationUser Attendee { get; set; }
+        public Gig Gig { get; private set; }
+        public ApplicationUser Attendee { get; private set; }
 
         protected Attendance()
         {

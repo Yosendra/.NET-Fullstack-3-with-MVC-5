@@ -36,6 +36,7 @@ using AutoMapper;
  * • IGigRepository.cs
  * • GigRepository.cs
  * • GigsController.cs (API)                      (Refactor)
+ * • Gig.cs
  * • NotificationsController.cs (API)             (Refactor)
  * • INotificationRepository.cs
  * • NotificationRepository.cs
@@ -49,6 +50,7 @@ using AutoMapper;
  * • AttendancesController.cs                     (Refactor)
  * • IAttendanceRepository.cs
  * • AttendanceRepository.cs
+ * • Attendance.cs
  * • Attendance.cs
 */
 

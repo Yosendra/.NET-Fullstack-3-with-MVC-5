@@ -7,19 +7,27 @@ namespace GigHub.Core.Models
 {
     public class Gig
     {
-        public int Id { get; set; }
-        public string ArtistId { get; set; }
-        public byte GenreId { get; set; }
-        public DateTime DateTime { get; set; }
-        public string Venue { get; set; }
+        public int Id { get; private set; }
+        public string ArtistId { get; private set; }
+        public byte GenreId { get; private set; }
+        public DateTime DateTime { get; private set; }
+        public string Venue { get; private set; }
         public bool IsCanceled { get; private set; }
-        public Genre Genre { get; set; }
-        public ApplicationUser Artist { get; set; }
+        public Genre Genre { get; private set; }
+        public ApplicationUser Artist { get; private set; }
         public ICollection<Attendance> Attendances { get; private set; }
 
-        public Gig()
+        protected Gig()
         {
             Attendances = new Collection<Attendance>();
+        }
+
+        public Gig(string artistId, byte genreId, DateTime dateTime, string venue)
+        {
+            ArtistId = artistId;
+            GenreId = genreId;
+            DateTime = dateTime;
+            Venue = venue;
         }
 
         public void Cancel()

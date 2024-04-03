@@ -2,7 +2,7 @@
 {
     public class Genre
     {
-        public byte Id { get; set; }
-        public string Name { get; set; }
+        public byte Id { get; private set; }
+        public string Name { get; private set; }
     }
 }

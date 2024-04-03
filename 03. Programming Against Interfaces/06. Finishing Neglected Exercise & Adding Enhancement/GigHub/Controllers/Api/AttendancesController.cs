@@ -11,10 +11,7 @@ namespace GigHub.Controllers.Api
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public AttendancesController(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
+        public AttendancesController(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
 
         [HttpPost]
         public IHttpActionResult Attend([FromBody] AttendanceDto dto)

@@ -4,7 +4,7 @@
     {
         public string FolloweeId { get; private set; }
         public string FollowerId { get; private set; }
-        public ApplicationUser Follower { get; set; }
+        public ApplicationUser Follower { get; private set; }
         public ApplicationUser Followee { get; set; }
 
         protected Following()
