@@ -8,10 +8,7 @@ namespace GigHub.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public FolloweesController(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
+        public FolloweesController(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
 
         public ActionResult Index()
         {

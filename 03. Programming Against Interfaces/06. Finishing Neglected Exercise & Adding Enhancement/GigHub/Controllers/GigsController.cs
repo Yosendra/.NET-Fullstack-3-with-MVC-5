@@ -13,10 +13,7 @@ namespace GigHub.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public GigsController(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
+        public GigsController(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
 
         [HttpPost]
         public ActionResult Search(GigsVM viewModel)
@@ -101,7 +98,7 @@ namespace GigHub.Controllers
         public ActionResult Edit(int id)
         {
             var gig = _unitOfWork.Gigs.GetGig(id);
-            if (gig == null) 
+            if (gig == null)
                 return HttpNotFound();
 
             if (gig.ArtistId != User.Identity.GetUserId()) 

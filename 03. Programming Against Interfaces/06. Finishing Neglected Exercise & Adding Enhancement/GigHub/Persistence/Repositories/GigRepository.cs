@@ -37,7 +37,7 @@ namespace GigHub.Persistence.Repositories
                         g.Genre.Name.Contains(searchKeyword) ||
                         g.Venue.Contains(searchKeyword));
 
-            return upcomingGigs;
+            return upcomingGigs.ToList();
         }
 
         public Gig GetGigWithAttendees(int gigId)
@@ -54,7 +54,8 @@ namespace GigHub.Persistence.Repositories
                     g.ArtistId == userId &&
                     g.DateTime > DateTime.Now &&
                     g.IsCanceled == false)
-                .Include(g => g.Genre);
+                .Include(g => g.Genre)
+                .ToList();
         }
 
         public IEnumerable<Gig> GetGigsUserAttending(string userId)
@@ -63,7 +64,8 @@ namespace GigHub.Persistence.Repositories
                 .Where(a => a.AttendeeId == userId)
                 .Select(a => a.Gig)
                 .Include(g => g.Artist)
-                .Include(g => g.Genre);
+                .Include(g => g.Genre)
+                .ToList();
         }
 
         public void Add(Gig gig)

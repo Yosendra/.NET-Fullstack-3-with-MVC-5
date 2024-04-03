@@ -9,10 +9,7 @@ namespace GigHub.Controllers.Api
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public GigsController(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
+        public GigsController(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
 
         [HttpDelete]
         public IHttpActionResult Cancel(int id)

@@ -13,7 +13,9 @@ namespace GigHub.Persistence.Repositories
         public Following GetFollowing(string followeeId, string followerId)
         {
             return _context.Followings
-                .SingleOrDefault(a => a.FolloweeId == followeeId && a.FollowerId == followerId);
+                .SingleOrDefault(a => 
+                    a.FolloweeId == followeeId && 
+                    a.FollowerId == followerId);
         }
     }
 }

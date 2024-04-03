@@ -7,8 +7,8 @@ namespace GigHub.Core.Repositories
     {
         void Add(Gig gig);
         Gig GetGig(int gigId);
-        IEnumerable<Gig> GetGigsUserAttending(string userId);
         Gig GetGigWithAttendees(int gigId);
+        IEnumerable<Gig> GetGigsUserAttending(string userId);
         IEnumerable<Gig> GetUpcomingGigs(string searchKeyword = null);
         IEnumerable<Gig> GetUpcomingGigsByArtist(string userId);
     }

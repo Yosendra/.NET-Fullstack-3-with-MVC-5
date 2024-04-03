@@ -10,10 +10,7 @@ namespace GigHub.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public HomeController(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
+        public HomeController(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
 
         public ActionResult Index(string query = null)
         {

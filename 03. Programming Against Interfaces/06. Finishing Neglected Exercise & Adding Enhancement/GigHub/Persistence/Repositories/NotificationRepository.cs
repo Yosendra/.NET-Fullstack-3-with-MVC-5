@@ -11,16 +11,17 @@ namespace GigHub.Persistence.Repositories
         private readonly ApplicationDbContext _context;
 
         public NotificationRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+            => _context = context;
 
         public IEnumerable<Notification> GetNotificationsFor(string userId)
         {
             return _context.UserNotifications
-                .Where(un => un.UserId == userId && un.IsRead == false)
+                .Where(un => 
+                    un.UserId == userId && 
+                    un.IsRead == false)
                 .Select(un => un.Notification)
-                .Include(n => n.Gig.Artist);
+                .Include(n => n.Gig.Artist)
+                .ToList();
         }
     }
 }

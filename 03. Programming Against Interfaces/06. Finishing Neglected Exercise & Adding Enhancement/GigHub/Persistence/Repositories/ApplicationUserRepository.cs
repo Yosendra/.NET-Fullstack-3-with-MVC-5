@@ -15,7 +15,8 @@ namespace GigHub.Persistence.Repositories
         {
             return _context.Followings
                 .Where(f => f.FollowerId == followerId)
-                .Select(f => f.Followee);
+                .Select(f => f.Followee)
+                .ToList();
         }
     }
 }

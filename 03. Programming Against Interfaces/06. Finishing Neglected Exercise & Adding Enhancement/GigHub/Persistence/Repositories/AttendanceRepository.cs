@@ -15,13 +15,18 @@ namespace GigHub.Persistence.Repositories
         public Attendance GetAttendance(int gigId, string userId)
         {
             return _context.Attendances
-                .SingleOrDefault(a => a.GigId == gigId && a.AttendeeId == userId);
+                .SingleOrDefault(a => 
+                    a.GigId == gigId && 
+                    a.AttendeeId == userId);
         }
 
         public IEnumerable<Attendance> GetFutureAttendances(string userId)
         {
             return _context.Attendances
-                .Where(a => a.AttendeeId == userId && a.Gig.DateTime > DateTime.Now);
+                .Where(a => 
+                    a.AttendeeId == userId && 
+                    a.Gig.DateTime > DateTime.Now)
+                .ToList();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using GigHub.Core.Models;
 using GigHub.Core.Repositories;
 
@@ -12,7 +13,7 @@ namespace GigHub.Persistence.Repositories
 
         public IEnumerable<Genre> GetGenres()
         {
-            return _context.Genres;
+            return _context.Genres.ToList();
         }
     }
 }
