@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+    <ul class="navbar-nav navbar-right">
+        <li class="notifications me-4">
+            <a href="#">
+                <i class="bi bi-globe-asia-australia"></i>
+                <span class="badge js-notifications-count hide"></span>
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @User.Identity.GetUserName()
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="@Url.Action("Mine", "Gigs")">My Upcoming Gigs</a></li>
+                <li><a class="dropdown-item" href="@Url.Action("Attending", "Gigs")">Gigs I'm Going</a></li>
+                <li><a class="dropdown-item" href="@Url.Action("Index", "Followees")">Artist I'm Following</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            </ul>
+        </li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class="nav-link" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class="nav-link" })</li>
+    </ul>
+}
