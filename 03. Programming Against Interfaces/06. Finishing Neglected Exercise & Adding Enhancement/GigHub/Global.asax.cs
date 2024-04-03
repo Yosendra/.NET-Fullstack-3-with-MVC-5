@@ -26,6 +26,7 @@ using AutoMapper;
  * • GenreConfiguration.cs
  * • NotificationConfiguration.cs
  * • ApplicationUserConfiguration.cs
+ * 
  * • IUnitOfWork.cs
  * • UnitOfWork.cs
  * • FolloweesController.cs                       (Refactor)
@@ -40,6 +41,10 @@ using AutoMapper;
  * • NotificationRepository.cs
  * • IUserNotificationRepository.cs
  * • UserNotificationRepository.cs
+ * • FollowingsController.cs                      (Refactor)
+ * • Following.cs
+ * • IFollowingRepository.cs
+ * • FollowingRepository.cs
 */
 
 namespace GigHub

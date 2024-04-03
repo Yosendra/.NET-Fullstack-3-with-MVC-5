@@ -10,6 +10,16 @@ namespace GigHub.Persistence.Repositories
 
         public FollowingRepository(ApplicationDbContext context) => _context = context;
 
+        public void Add(Following following)
+        {
+            _context.Followings.Add(following);
+        }
+
+        public void Remove(Following following)
+        {
+            _context.Followings.Remove(following);
+        }
+
         public Following GetFollowing(string followeeId, string followerId)
         {
             return _context.Followings
