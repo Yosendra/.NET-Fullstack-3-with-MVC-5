@@ -10,7 +10,6 @@ namespace GigHub.Core
         IGigRepository Gigs { get; }
         IApplicationUserRepository Users { get; }
 
-
         void Complete();
     }
 }

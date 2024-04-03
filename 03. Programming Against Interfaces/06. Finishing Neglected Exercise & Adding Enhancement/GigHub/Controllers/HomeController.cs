@@ -1,50 +1,30 @@
-﻿using System;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
-using GigHub.Core.Models;
-using Microsoft.AspNet.Identity;
-using GigHub.Persistence;
-using GigHub.Persistence.Repositories;
+using GigHub.Core;
 using GigHub.Core.ViewModels.Shared;
+using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers
 {
     public class HomeController : Controller
     {
-        private ApplicationDbContext _context;
-        private readonly GigRepository _gigRespository;
-        private readonly AttendanceRepository _attendanceRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public HomeController()
+        public HomeController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
-            _gigRespository = new GigRepository(_context);
-            _attendanceRepository = new AttendanceRepository(_context);
+            _unitOfWork = unitOfWork;
         }
 
         public ActionResult Index(string query = null)
         {
-            var upcmingGigs = _context.Gigs
-                .Include(g => g.Artist)
-                .Include(g => g.Genre)
-                .Where(g => g.DateTime > DateTime.Now && g.IsCanceled == false);
-
-            if (!string.IsNullOrWhiteSpace(query))
-                upcmingGigs = upcmingGigs
-                    .Where(g => 
-                        g.Artist.Name.Contains(query) || 
-                        g.Genre.Name.Contains(query) || 
-                        g.Venue.Contains(query));
-
             var userId = User.Identity.GetUserId();
             var viewModel = new GigsVM
             {
-                UpcomingGigs = upcmingGigs,
+                UpcomingGigs = _unitOfWork.Gigs.GetUpcomingGigs(query),
                 IsShowActions = User.Identity.IsAuthenticated,
                 Heading = "Upcoming Gigs",
                 SearchTerm = query,
-                Attendances = _attendanceRepository.GetFutureAttendances(userId).ToLookup(a => a.GigId),
+                Attendances = _unitOfWork.Attendances.GetFutureAttendances(userId).ToLookup(a => a.GigId),
             };
 
             return View("Gigs", viewModel);

@@ -21,6 +21,25 @@ namespace GigHub.Persistence.Repositories
                 .SingleOrDefault(g => g.Id == gigId);
         }
 
+        public IEnumerable<Gig> GetUpcomingGigs(string searchKeyword = null)
+        {
+            var upcomingGigs = _context.Gigs
+                .Include(g => g.Artist)
+                .Include(g => g.Genre)
+                .Where(g => 
+                    g.DateTime > DateTime.Now && 
+                    g.IsCanceled == false);
+
+            if (!string.IsNullOrWhiteSpace(searchKeyword))
+                upcomingGigs = upcomingGigs
+                    .Where(g =>
+                        g.Artist.Name.Contains(searchKeyword) ||
+                        g.Genre.Name.Contains(searchKeyword) ||
+                        g.Venue.Contains(searchKeyword));
+
+            return upcomingGigs;
+        }
+
         public Gig GetGigWithAttendees(int gigId)
         {
             return _context.Gigs
