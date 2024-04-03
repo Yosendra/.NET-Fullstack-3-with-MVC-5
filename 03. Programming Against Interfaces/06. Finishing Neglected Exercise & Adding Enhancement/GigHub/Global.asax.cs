@@ -34,6 +34,12 @@ using AutoMapper;
  * • HomeController.cs                            (Refactor)
  * • IGigRepository.cs
  * • GigRepository.cs
+ * • GigsController.cs (API)                      (Refactor)
+ * • NotificationsController.cs (API)             (Refactor)
+ * • INotificationRepository.cs
+ * • NotificationRepository.cs
+ * • IUserNotificationRepository.cs
+ * • UserNotificationRepository.cs
 */
 
 namespace GigHub
