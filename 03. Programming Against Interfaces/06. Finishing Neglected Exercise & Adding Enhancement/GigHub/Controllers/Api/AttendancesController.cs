@@ -1,20 +1,19 @@
-﻿using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
+using GigHub.Core;
+using GigHub.Core.Dtos;
 using GigHub.Core.Models;
 using Microsoft.AspNet.Identity;
-using GigHub.Persistence;
-using GigHub.Core.Dtos;
 
 namespace GigHub.Controllers.Api
 {
     [Authorize]
     public class AttendancesController : ApiController
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public AttendancesController()
+        public AttendancesController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
 
         [HttpPost]
@@ -22,18 +21,14 @@ namespace GigHub.Controllers.Api
         {
             var gigId = dto.GigId;
             var userId = User.Identity.GetUserId();
-            var isAttendanceExist = _context.Attendances.Any(a => a.AttendeeId == userId && a.GigId == gigId);
+            var isAttendanceExist = _unitOfWork.Attendances.GetAttendance(gigId, userId) != null;
             
             if (isAttendanceExist)
                 return BadRequest("The attendance already exists.");
 
-            var attendance = new Attendance
-            {
-                GigId = gigId,
-                AttendeeId = userId,
-            };
-            _context.Attendances.Add(attendance);
-            _context.SaveChanges();
+            var attendance = new Attendance(gigId, userId);
+            _unitOfWork.Attendances.Add(attendance);
+            _unitOfWork.Complete();
 
             return Ok();
         }
@@ -42,13 +37,13 @@ namespace GigHub.Controllers.Api
         public IHttpActionResult DeleteAttendance(int id)
         {
             var userId = User.Identity.GetUserId();
-            var attendance = _context.Attendances.SingleOrDefault(a => a.GigId == id && a.AttendeeId == userId);
+            var attendance = _unitOfWork.Attendances.GetAttendance(id, userId);
 
             if (attendance == null)
                 return NotFound();
 
-            _context.Attendances.Remove(attendance);
-            _context.SaveChanges();
+            _unitOfWork.Attendances.Remove(attendance);
+            _unitOfWork.Complete();
 
             return Ok();
         }

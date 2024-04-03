@@ -12,6 +12,16 @@ namespace GigHub.Persistence.Repositories
 
         public AttendanceRepository(ApplicationDbContext context) => _context = context;
 
+        public void Add(Attendance attendance)
+        {
+            _context.Attendances.Add(attendance);
+        }
+
+        public void Remove(Attendance attendance)
+        {
+            _context.Attendances.Remove(attendance);
+        }
+
         public Attendance GetAttendance(int gigId, string userId)
         {
             return _context.Attendances

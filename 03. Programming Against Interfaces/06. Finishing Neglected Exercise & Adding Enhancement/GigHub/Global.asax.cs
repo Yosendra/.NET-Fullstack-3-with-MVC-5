@@ -45,6 +45,11 @@ using AutoMapper;
  * • Following.cs
  * • IFollowingRepository.cs
  * • FollowingRepository.cs
+ * • FollowingRepository.cs
+ * • AttendancesController.cs                     (Refactor)
+ * • IAttendanceRepository.cs
+ * • AttendanceRepository.cs
+ * • Attendance.cs
 */
 
 namespace GigHub
